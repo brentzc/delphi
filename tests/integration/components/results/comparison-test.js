@@ -6,12 +6,29 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | results/comparison', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders a text div comparing the users results with another demographic', async function(assert) {
+    this.set('original', {
+      age: 25,
+      years_left: 54.7,
+      meta: {
+        age: 25,
+        race: 'all',
+        gender: 'all'
+      }
+    });
 
-    await render(hbs`<Results::Comparison />`);
+    this.set('row', {
+      age: 25,
+      years_left: 60.1,
+      imminent_death_chance: 0.0413,
+      meta: {
+        age: 25,
+        race: 'hispanic',
+        gender: 'female'
+      }
+    });
 
-    assert.equal(this.element.textContent.trim(), '');
+    await render(hbs`<Results::Comparison @original={{this.original}} @row={{this.row}} />`);
+    assert.equal(this.element.textContent.trim(), 'hispanic females +5.40 years');
   });
 });

@@ -39,6 +39,9 @@
         </div>
         <div class="font-display text-xl">Other Demographics</div>
         {{#each this.extras as |row|}}
+            {{log row}}
+
+            {{log @result}}
             <Results::Comparison @original={{@result}} @row={{row}} class="py-1" />
         {{/each}}
     {{/if}}

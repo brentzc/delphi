@@ -1,7 +1,7 @@
-<div class="font-display text-2xl ml-4 mt-4">Life Expectancy By Age</div>
+<h2 class="font-display text-2xl ml-4 mt-4">Life Expectancy By Age</h2>
 
 <Chart::Controls @result={{@result}} />
-
+{{log @result}}
 <div {{did-insert this.loadData}} {{on-resize this.updateChartWidth}}>
     {{#if this.tooltipIsShown}}
         <div class="absolute bg-blue-700 border ml-16 mt-8 p-4 rounded">
@@ -18,8 +18,6 @@
             <Chart::Bar
                 @bar={{bar}}
                 @index={{index}}
-                @xScale={{this.chart.xScale}}
-                @yScale={{this.chart.yScale}}
                 @openTooltip={{this.openTooltip}}
                 @closeTooltip={{this.closeTooltip}}
             />

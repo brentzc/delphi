@@ -7,11 +7,19 @@ module('Integration | Component | results/header', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.set('result', {
+      age: 25,
+      years_left: 54.7,
+      imminent_death_chance: 0.11230000000000001,
+      meta: {
+        age: 25,
+        race: 'all',
+        gender: 'all'
+      }
+    })
+    await render(hbs`<Results::Header @result={{this.result}} />`);
 
-    await render(hbs`<Results::Header />`);
-
-    assert.equal(this.element.textContent.trim(), '');
+    assert.equal(this.element.querySelector('h1').textContent, 'The Oracle has spoken!');
+    assert.equal(this.element.querySelector('div.font-body').textContent, `You have ~${Math.round(this.result.years_left)} years left to live`)
   });
 });

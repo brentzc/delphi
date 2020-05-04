@@ -3,15 +3,22 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | results/charts', function(hooks) {
+module('Integration | Component | results/chart-page', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.set('result', {
+      age: 25,
+      imminent_death_change: 0.1123,
+      meta: {
+        age: 25,
+        race: 'hispanic',
+        gender: 'female'
+      },
+      years_left: 54.7
+    });
 
-    await render(hbs`<Results::Charts />`);
-
-    assert.equal(this.element.textContent.trim(), '');
+    await render(hbs`<Results::Chart-Page @result={{this.result}} />`);
+    assert.equal('Life Expectancy By Age', this.element.querySelector('h2').textContent);
   });
 });
