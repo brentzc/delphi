@@ -13,14 +13,5 @@ module('Integration | Component | results/header', function(hooks) {
     await render(hbs`<Results::Header />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Results::Header>
-        template block text
-      </Results::Header>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

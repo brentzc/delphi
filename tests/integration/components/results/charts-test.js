@@ -13,14 +13,5 @@ module('Integration | Component | results/charts', function(hooks) {
     await render(hbs`<Results::Charts />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Results::Charts>
-        template block text
-      </Results::Charts>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

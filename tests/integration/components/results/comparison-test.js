@@ -13,14 +13,5 @@ module('Integration | Component | results/comparison', function(hooks) {
     await render(hbs`<Results::Comparison />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Results::Comparison>
-        template block text
-      </Results::Comparison>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

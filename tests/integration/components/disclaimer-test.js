@@ -13,14 +13,5 @@ module('Integration | Component | disclaimer', function(hooks) {
     await render(hbs`<Disclaimer />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Disclaimer>
-        template block text
-      </Disclaimer>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

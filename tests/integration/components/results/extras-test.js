@@ -13,14 +13,5 @@ module('Integration | Component | results/extras', function(hooks) {
     await render(hbs`<Results::Extras />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Results::Extras>
-        template block text
-      </Results::Extras>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

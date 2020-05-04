@@ -2,8 +2,6 @@ import Service from '@ember/service';
 import Papa from 'papaparse';
 import LifeExpectancyTable from '../utils/lifeExpectancyTable';
 
-
-
 export default class ApiService extends Service {
     races = [ 'all', 'black', 'white', 'hispanic' ];
     genders = [ 'all', 'male', 'female' ];

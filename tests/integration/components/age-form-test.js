@@ -13,14 +13,5 @@ module('Integration | Component | age-form', function(hooks) {
     await render(hbs`<AgeForm />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <AgeForm>
-        template block text
-      </AgeForm>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

@@ -4,11 +4,6 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 import * as d3 from 'd3';
 
-Array.prototype.subarray = function(start, end) {
-    if (!end) { end = -1; }
-    return this.slice(start, this.length + 1 - (end * -1));
-}
-
 export default class ChartService extends Service {
     @service api;
 
@@ -60,7 +55,6 @@ export default class ChartService extends Service {
             });
             this.data = table.rows;
         } catch (error) {
-            console.log(error);
             this.data = [];
         }
     }
