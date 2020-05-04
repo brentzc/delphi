@@ -43,17 +43,15 @@ export default class AgeFormComponent extends Component {
         this.error = null;
         yield timeout(100);
         try {
-            if (!this.age) {
-                throw new Error('Age is required');
-            }
-            if (this.age < 0) {
-                throw new Error('Invalid Age')
+            const age = parseInt(this.age);
+            if (Number.isNaN(age)) {
+                throw new Error('Invalid Age');
             }
 
-            this.router.transitionTo('results', this.age, {
+            this.router.transitionTo('results', age, {
                 queryParams: {
-                    race: this.race,
-                    gender: this.gender
+                    race: this.race || 'all',
+                    gender: this.gender || 'all'
                 }
             });
         } catch (error) {

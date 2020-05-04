@@ -6,21 +6,10 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | ui/site-header', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
+  test('it should render the site title', async function(assert) {
     await render(hbs`<Ui::SiteHeader />`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Ui::SiteHeader>
-        template block text
-      </Ui::SiteHeader>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    const link = this.element.querySelector('a');
+    assert.equal(link.textContent.trim(), 'Delphi');
   });
 });
