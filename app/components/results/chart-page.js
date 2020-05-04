@@ -21,6 +21,7 @@ export default class ResultsChartPageComponent extends Component {
         this.chart.width = width;
     }
 
+    // Set initial chart parameters and load data
     @action loadData() {
         const { meta: { age, race, gender } } = this.args.result;
 

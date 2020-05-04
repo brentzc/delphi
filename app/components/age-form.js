@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency-decorators';
 import { tracked } from '@glimmer/tracking';
-import { timeout } from 'ember-concurrency';
 import { action } from '@ember/object';
 
 export default class AgeFormComponent extends Component {
@@ -38,10 +36,10 @@ export default class AgeFormComponent extends Component {
         this.race = this.races.includes(race) ? race.toLowerCase() : 'all';
     }
 
-    @task *calculateLifeSpan(event) {
+    // Do some validation of the age input and transition to the results page
+    @action calculateLifeSpan(event) {
         event.preventDefault();
         this.error = null;
-        yield timeout(100);
         try {
             const age = parseInt(this.age);
             if (Number.isNaN(age)) {

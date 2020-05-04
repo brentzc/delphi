@@ -2,10 +2,17 @@ import Service from '@ember/service';
 import Papa from 'papaparse';
 import LifeExpectancyTable from '../utils/lifeExpectancyTable';
 
+/**
+ * Service to read data from the Life Table csv files
+ */
 export default class ApiService extends Service {
+    // any combination of race and gender determine which file to read from
     races = [ 'all', 'black', 'white', 'hispanic' ];
     genders = [ 'all', 'male', 'female' ];
 
+    /**
+     * Get the mortality date for a given age, race and gender.
+     */
     async getAgeData({ age, race = 'all', gender = 'all' }) {
         const rows = await this.readFile(race, gender);
         const table = new LifeExpectancyTable(rows, { age: Number(age), race, gender });
@@ -13,11 +20,18 @@ export default class ApiService extends Service {
         return table.rowForAge(age);
     }
 
+    /**
+     * Get every row of the csv for a given race and gender
+     */
     async getDemographicData({ race = 'all', gender = 'all' }) {
         const rows = await this.readFile(race, gender);
         return new LifeExpectancyTable(rows, { race, gender });
     }
 
+    /**
+     * For a given age, race, and gender, load three random
+     * rows of data for the given age to be displayed on the "Extras" tab
+     */
     loadComparisonData({ age, race: currentRace, gender: currentGender }) {
         const combinations = [];
         for (let i = 0; i < this.races.length; i++) {
@@ -29,6 +43,7 @@ export default class ApiService extends Service {
                 }
             }
         }
+
         const promises = [];
         for (let i = 0; i < 3; i++) {
             const index = Math.floor(Math.random() * combinations.length);
@@ -52,6 +67,9 @@ export default class ApiService extends Service {
                     }
 
                     resolve(data);
+                },
+                error: error => {
+                    reject(error)
                 }
             })
         });

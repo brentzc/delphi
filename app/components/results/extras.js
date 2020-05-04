@@ -29,6 +29,7 @@ export default class ResultsExtrasComponent extends Component {
         return Math.round(years_left) + Number(age);
     }
 
+    // Load the extra needed to fill out the data for this tab
     @task *loadExtraData() {
         try {
             this.extras = yield this.api.loadComparisonData({

@@ -20,6 +20,7 @@ export default class ChartService extends Service {
 
     margin = {top: 30, right: 0, bottom: 30, left: 40};
 
+    // Function for scaling x values of the chart
     get xScale() {
         return d3.scaleBand()
             .domain(d3.range(this.displayData.length))
@@ -27,6 +28,7 @@ export default class ChartService extends Service {
             .padding(0.1);
     }
 
+    // Function for scaling y values of the chart
     get yScale() {
         return d3.scaleLinear()
             .domain([ d3.min(this.displayData, d => d.expected_age), d3.max(this.displayData, d => d.expected_age)])
@@ -34,6 +36,10 @@ export default class ChartService extends Service {
             .range([ this.height - this.margin.bottom, this.margin.top])
     }
 
+    /**
+     * Display a slice of the data surrounding the users current age
+     * because displaying all 100 rows doesn't look good
+     */
     get displayData() {
         if (this.data.length === 0) { return this.data; }
 
@@ -43,10 +49,16 @@ export default class ChartService extends Service {
 
         return this.data.reduce((displayData, data, index) => {
             const validIndex = index >= leftIndex && index <= rightIndex;
-            return [ ...displayData, ...(validIndex ? [ data ] : [])];
+            return [
+                ...displayData,
+                ...(validIndex ? [ data ] : [])
+            ];
         }, []);
     }
 
+    /**
+     * Read the life table csvs for data to be displayed in a chart
+     */
     @task *loadData() {
         try {
             const table = yield this.api.getDemographicData({

@@ -1,16 +1,18 @@
 import { modifier } from 'ember-modifier';
 
 export default modifier(function onResize(element, [ callback ]) {
-    const resizeObserver = new ResizeObserver(() => {
-        callback({
-            width: element.offsetWidth,
-            height: element.offsetHeight
+    if (ResizeObserver) {
+        const resizeObserver = new ResizeObserver(() => {
+            callback({
+                width: element.offsetWidth,
+                height: element.offsetHeight
+            });
         });
-    });
 
-    resizeObserver.observe(element);
+        resizeObserver.observe(element);
 
-    return () => {
-        resizeObserver.unobserve(element);
+        return () => {
+            resizeObserver.unobserve(element);
+        }
     }
 });
