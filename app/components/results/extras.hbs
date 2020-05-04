@@ -1,4 +1,4 @@
-<div class="pt-4 px-4" {{did-insert (perform this.loadExtraData)}}>
+<div class="py-4 px-4" {{did-insert (perform this.loadExtraData)}}>
     {{#if this.loadExtraData.isRunning}}
         <div class="justify-center">
             <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32 m-auto" />
@@ -43,3 +43,4 @@
         {{/each}}
     {{/if}}
 </div>
+<Disclaimer class="ml-4" />
