@@ -1,0 +1,28 @@
+<div class="font-display text-2xl ml-4 mt-4">Life Expectancy By Age</div>
+
+<Chart::Controls @result={{@result}} />
+
+<div {{did-insert this.loadData}} {{on-resize this.updateChartWidth}}>
+    {{#if this.tooltipIsShown}}
+        <div class="absolute bg-blue-700 border ml-16 mt-8 p-4 rounded">
+            <div class="font-display text-white">Age: {{this.tooltip.age}}</div>
+            <div class="font-display text-white">Life Expectancy: {{this.tooltip.expected_age}}</div>
+        </div>
+    {{/if}}
+    <Chart::Container
+        @id="chart"
+        @width={{this.width}}
+        @height={{this.height}}
+    >
+        {{#each this.chart.displayData as |bar index|}}
+            <Chart::Bar
+                @bar={{bar}}
+                @index={{index}}
+                @xScale={{this.chart.xScale}}
+                @yScale={{this.chart.yScale}}
+                @openTooltip={{this.openTooltip}}
+                @closeTooltip={{this.closeTooltip}}
+            />
+        {{/each}}
+    </Chart::Container>
+</div>

@@ -1,0 +1,43 @@
+<div class="w-full max-w-lg m-auto bg-blue-200 mt-8 rounded">
+    <h2 class="text-xl font-display bg-blue-700 text-white text-center py-4">How Long Till I Die?</h2>
+    <div class="px-8 py-8">
+        <section>
+            <p class="text-md font-body text-gray-700">Enter your age below and a few other factors about yourself to make a prediction about how long you have left to live.</p>
+        </section>
+        <form class="mt-4" {{on "submit" (perform this.calculateLifeSpan )}}>
+            {{#if this.error}}
+                <div class="flex justify-center text-red-500 group relative w-full flex justify-center py-2 px-4 mb-4 border leading-5 bg-red-100 border-red-500 rounded-md">
+                    <span class="pl-2">{{this.error}}</span>
+                </div>
+            {{/if}}
+            <Ui::Input
+                @value={{this.age}}
+                @label="Enter Your Age"
+                @placeholder="10, 25, 101..."
+            />
+            <Ui::Drop-down
+                @updateValue={{this.setRace}}
+                @label="Select Your Race"
+                @options={{this.raceOptions}}
+                class="my-4"
+            />
+            <Ui::Drop-down
+                @updateValue={{this.setGender}}
+                @label="Select Your Gender"
+                @options={{this.genderOptions}}
+                class="my-4"
+            />
+            <button
+                type="submit"
+                role="button"
+                class="w-full bg-teal-600 hover:bg-teal-700 border-teal-600 hover:border-teal-700 border-4 font-body text-white py-2 px-2 rounded mt-6"
+            >
+                {{#if this.calculateLifeSpan.isRunning}}
+                    <span>Consulting the stars...</span>
+                {{else}}
+                    <span>Ask The Oracle</span>
+                {{/if}}
+            </button>
+        </form>
+    </div>
+</div>

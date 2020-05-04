@@ -1,0 +1,23 @@
+<div class="w-4/5 m-auto bg-white pb-10">
+    <ul class="flex mx-4 text-center">
+        {{#each this.tabs as |tab|}}
+            {{#let (if (eq tab this.selectedTab) this.selectedClasses this.unselectedClasses ) as |tabClasses|}}
+                <li class="flex-1 mr-2">
+                    <button
+                        role="tab"
+                        type="button"
+                        class="font-display w-full text-center block border rounded py-2 px-4 {{tabClasses}}"
+                        {{on "click" (fn this.selectTab tab)}}
+                    >
+                        {{tab}}
+                    </button>
+                </li>
+            {{/let}}
+        {{/each}}
+    </ul>
+    {{#if (eq this.selectedTab "Extras")}}
+        <Results::Extras @result={{@result}} />
+    {{else if (eq this.selectedTab "Charts")}}
+        <Results::Chart-Page @result={{@result}} />
+    {{/if}}
+</div>

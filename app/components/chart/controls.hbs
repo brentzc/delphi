@@ -1,0 +1,19 @@
+<div class="flex my-4">
+    <Ui::Drop-down
+        @options={{array "All" "Hispanic" "White" "Black"}}
+        @selected={{capitalize this.chart.selectedRace}}
+        @updateValue={{this.updateRace}}
+        class="mx-4"
+    />
+    <Ui::Drop-down
+        @options={{array "All" "Male" "Female"}}
+        @selected={{capitalize this.selectedGender}}
+        @updateValue={{this.updateGender}}
+        class="mx-4"
+    />
+    {{#if this.chart.loadData.isRunning}}
+        <div class="mx-4 flex">
+            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-8 w-8 m-auto" />
+        </div>
+    {{/if}}
+</div>

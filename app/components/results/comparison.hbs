@@ -1,0 +1,10 @@
+<div class="flex items-center flex-shrink-0" ...attributes>
+    <Svg::Icon-User
+        class="h-8 w-8 mr-2"
+        @primary={{if (gte this.diff 0) "text-green-500" "text-red-500"}}
+        @secondary={{if (gte this.diff 0) "text-green-700" "text-red-700"}}
+    />
+    <div class="font-body">
+        {{this.demographic}} <span class="font-bold tracking-wide {{if (gte this.diff 0) "text-green-700" "text-red-700"}}">{{this.displayDiff}}</span> years
+    </div>
+</div>

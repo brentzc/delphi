@@ -1,0 +1,45 @@
+<div class="pt-4 px-4" {{did-insert (perform this.loadExtraData)}}>
+    {{#if this.loadExtraData.isRunning}}
+        <div class="justify-center">
+            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32 m-auto" />
+        </div>
+    {{else}}
+        <div class="font-display text-xl">More Info</div>
+        <div class="flex items-center py-1">
+            <Svg::Icon-Time
+                class="h-8 w-8 mr-2"
+                @primary="text-blue-300"
+                @secondary="text-purple-700"
+            />
+            <div class="font-body">You are expected to live until <span class="font-bold text-blue-700">~{{this.expected_age}}</span> years old</div>
+        </div>
+        <div class="flex items-center py-1">
+            {{#if (gt this.newborn_expected_age this.expected_age)}}
+                <Svg::Icon-Trend-Up
+                    class="h-8 w-8 mr-2"
+                    @primary="text-green-500"
+                    @secondary="text-green-700"
+                />
+            {{else}}
+                <Svg::Icon-Trend-Down
+                    class="h-8 w-8 mr-2"
+                    @primary="text-red-700"
+                    @secondary="text-red-500"
+                />
+            {{/if}}
+            <div class="font-body">A {{this.demographic}} born this year will live to an average age of <span class="font-bold text-blue-700">{{this.newborn_expected_age}}</span></div>
+        </div>
+        <div class="flex items-center py-1">
+            <Svg::Icon-Bolt
+                class="h-8 w-8 mr-2"
+                @primary="text-blue-900"
+                @secondary="text-yellow-300"
+            />
+            <div class="font-body">You have a <span class="text-blue-700 font-bold">{{@result.imminent_death_chance}}%</span> chance of dying in the next year</div>
+        </div>
+        <div class="font-display text-xl">Other Demographics</div>
+        {{#each this.extras as |row|}}
+            <Results::Comparison @original={{@result}} @row={{row}} class="py-1" />
+        {{/each}}
+    {{/if}}
+</div>
