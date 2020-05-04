@@ -1,7 +1,8 @@
 <h2 class="font-display text-2xl ml-4 mt-4">Life Expectancy By Age</h2>
+<aside class="font-display text-sm ml-4">Hover on a bar to see more information</aside>
 
 <Chart::Controls @result={{@result}} />
-{{log @result}}
+
 <div {{did-insert this.loadData}} {{on-resize this.updateChartWidth}}>
     {{#if this.tooltipIsShown}}
         <div class="absolute bg-blue-700 border ml-16 mt-8 p-4 rounded">

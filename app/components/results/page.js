@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class ResultsPageComponent extends Component {
-    @tracked selectedTab = null;
+    @tracked selectedTab = 'Extras';
 
     tabs = [ 'Extras', 'Charts' ];
 

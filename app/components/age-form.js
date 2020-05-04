@@ -42,7 +42,7 @@ export default class AgeFormComponent extends Component {
         this.error = null;
         try {
             const age = parseInt(this.age);
-            if (Number.isNaN(age)) {
+            if (Number.isNaN(age) || age < 0) {
                 throw new Error('Invalid Age');
             }
 
