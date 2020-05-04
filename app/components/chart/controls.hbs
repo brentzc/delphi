@@ -1,15 +1,15 @@
-<div class="flex my-4">
+<div class="sm:flex my-4">
     <Ui::Drop-down
         @options={{array "All" "Hispanic" "White" "Black"}}
         @selected={{capitalize this.chart.selectedRace}}
         @updateValue={{this.updateRace}}
-        class="mx-4"
+        class="mx-4 pt-1"
     />
     <Ui::Drop-down
         @options={{array "All" "Male" "Female"}}
         @selected={{capitalize this.selectedGender}}
         @updateValue={{this.updateGender}}
-        class="mx-4"
+        class="mx-4 pt-1"
     />
     {{#if this.chart.loadData.isRunning}}
         <div class="mx-4 flex">
